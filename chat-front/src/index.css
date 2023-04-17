@@ -46,3 +46,10 @@ table {
   border-collapse: collapse;
   border-spacing: 0;
 }
+
+pre {
+  margin: 10px 0;
+  padding: 10px;
+  background: #000;
+  border-radius: 5px;
+}

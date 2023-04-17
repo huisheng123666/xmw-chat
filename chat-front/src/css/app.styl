@@ -1,12 +1,46 @@
 .App
   box-sizing border-box
-  width 800px
+  width 100vw
   height 100vh
   margin 0 auto
   border 1px solid #eee
+  overflow hidden
   &>h4
+    display flex
+    justify-content space-between
+    align-items center
     box-sizing border-box
     padding-left 20px
     height 40px
     line-height 40px
     border-bottom 1px solid #eee
+  .message
+    height calc(100% - 100px)
+    overflow-y scroll
+    .msg-item
+      padding 10px
+      margin-bottom 10px
+      display flex
+      &.left
+        justify-content flex-start
+        .info
+          background cornflowerblue
+      &.right
+        justify-content flex-end
+        .info
+          background green
+      .info
+        max-width 100%
+        padding 4px 10px
+        line-height 20px
+        font-size 14px
+        border-radius 5px
+        color #fff
+  .send
+    padding 0 10px
+    box-sizing border-box
+    height 50px
+    display flex
+    align-items center
+    border-top 1px solid #eee
+

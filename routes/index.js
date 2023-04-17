@@ -1,22 +1,23 @@
 const { curly } = require('node-libcurl')
 const router = require('koa-router')()
+const fs = require('fs')
 
-router.get('/', async (ctx, next) => {
-  await ctx.render('index', {
-    title: 'Hello Koa 2!'
-  })
+router.get('/*', async (ctx, next) => {
+  ctx.set('Content-Type', 'text/html;charset=utf-8')
+  ctx.body = fs.readFileSync('public/chat/index.html')
 })
 
-router.get('/chat', async (ctx, next) => {
+router.post('/api/chat', async (ctx, next) => {
+  const { messages } = ctx.request.body
   const res = await curly.post('https://api.openai.com/v1/chat/completions', {
     postFields: JSON.stringify({
-      "model": "gpt-3.5-turbo",
-      "messages": [{"role": "user", "content": '你好'}],
-      "temperature": 0.7
+      model: "gpt-3.5-turbo",
+      messages,
+      temperature: 0.7
     }),
     httpHeader: [
       'Content-Type: application/json',
-      'Authorization: Bearer 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',
+      'Authorization: Bearer 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',
     ]
   })
   ctx.body = res.data
