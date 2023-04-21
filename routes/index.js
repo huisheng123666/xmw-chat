@@ -11,7 +11,7 @@ router.post('/api/chat', async (ctx, next) => {
   const { messages } = ctx.request.body
   const res = await curl([
     'Content-Type: application/json',
-    'Authorization: Bearer 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',
+    'Authorization: Bearer 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',
   ], JSON.stringify({
     model: "gpt-3.5-turbo",
     messages,
