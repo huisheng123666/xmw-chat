@@ -9,12 +9,12 @@ router.get('/chat/*', async (ctx, next) => {
 })
 
 const openai = new OpenAI({
-  apiKey: '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'
+  apiKey: ''
 });
 
 router.post('/chat/api/chat', async (ctx, next) => {
   const stream = await openai.chat.completions.create({
-    model: "gpt-3.5",
+    model: "gpt-3.5-turbo-0613",
     messages: [{ role: "user", content: "Say this is a test" }],
     stream: true,
   });
