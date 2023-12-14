@@ -14,7 +14,7 @@ const openai = new OpenAI({
 
 router.post('/chat/api/chat', async (ctx, next) => {
   const stream = await openai.chat.completions.create({
-    model: "gpt-3.5-turbo-0613",
+    model: "gpt-3.5-turbo",
     messages: [{ role: "user", content: "Say this is a test" }],
     stream: true,
   });
