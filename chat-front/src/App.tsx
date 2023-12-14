@@ -47,7 +47,7 @@ function App() {
     setBtnLoading(true)
     const msgArr = [msgs[0]]
     if (msgs.length > 2) {
-      msgArr.push(...msgs.slice(msgs.length - 2))
+      msgArr.push(...msgs.slice(msgs.length - 3))
     }
     axios.post('/chat/api/chat', {
       messages: msgs

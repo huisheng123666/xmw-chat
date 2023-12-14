@@ -1,23 +1,26 @@
 const router = require('koa-router')()
 const fs = require('fs')
 const { curl } = require('../util')
+const OpenAI = require("openai")
 
-router.get('/*', async (ctx, next) => {
+router.get('/chat/*', async (ctx, next) => {
   ctx.set('Content-Type', 'text/html;charset=utf-8')
   ctx.body = fs.readFileSync('public/chat/index.html')
 })
 
-router.post('/api/chat', async (ctx, next) => {
-  const { messages } = ctx.request.body
-  const res = await curl([
-    'Content-Type: application/json',
-    'Authorization: Bearer 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',
-  ], JSON.stringify({
-    model: "gpt-3.5-turbo",
-    messages,
-    temperature: 0.7
-  }))
-  ctx.body = res
+const openai = new OpenAI({
+  apiKey: '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'
+});
+
+router.post('/chat/api/chat', async (ctx, next) => {
+  const stream = await openai.chat.completions.create({
+    model: "gpt-4",
+    messages: [{ role: "user", content: "Say this is a test" }],
+    stream: true,
+  });
+  for await (const chunk of stream) {
+    process.stdout.write(chunk.choices[0]?.delta?.content || "");
+  }
 })
 
 router.get('/json', async (ctx, next) => {

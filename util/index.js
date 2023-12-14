@@ -26,9 +26,9 @@ function index(header, data, method = 'POST') {
         exec(`
 curl https://api.openai.com/v1/chat/completions \\
   -X ${method} \\
-  ${headerStr}-d '${data}'
+  ${headerStr}-d ${data}
 `, (err, stdout, stderr) => {
-            console.log(err, stdout)
+            console.log(err, stdout, stderr)
             if (!err) {
                 try {
                     const str = stdout.replace(/\\n/g, "\\n")
