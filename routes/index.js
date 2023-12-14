@@ -9,7 +9,7 @@ router.get('/chat/*', async (ctx, next) => {
 })
 
 const openai = new OpenAI({
-  apiKey: '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'
+  apiKey: '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'
 });
 
 router.post('/chat/api/chat', async (ctx, next) => {
