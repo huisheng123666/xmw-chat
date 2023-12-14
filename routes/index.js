@@ -21,6 +21,9 @@ router.post('/chat/api/chat', async (ctx, next) => {
   for await (const chunk of stream) {
     process.stdout.write(chunk.choices[0]?.delta?.content || "");
   }
+  ctx.body = {
+    code: 0
+  }
 })
 
 router.get('/json', async (ctx, next) => {
